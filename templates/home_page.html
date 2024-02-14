@@ -22,7 +22,6 @@
     <script>
         function attendance(){
             subject = prompt("Enter Lecture Name : ")
-            console.log(subject)
             var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             fetch('/attendance', {
                 method: 'POST',
@@ -31,8 +30,18 @@
                   'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({ subject: subject }),
-              });
-              alert('Please look properly on camera. Attendance will between 10 seconds. Press OK button for start process')
+              })
+            .then(response => response.json())  // Parse JSON response
+        .then(data => {
+            // Handle response data
+            alert(data.message);  // Display response message to user
+            // confirm(data.message)
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Error:', error);
+            alert('An error occurred while taking attendance.');
+        });
         }
     </script>
 
@@ -41,9 +50,9 @@
 <div class="main_div container"><br><br>
 <form method='post'>
     {% csrf_token %}
-    <button class="btn btn-primary">Student Admission</button>
+    <a href="/admission"><button class="btn btn-primary" type="button">Student Admission</button></a>
     <button class="btn btn-info">Student Information</button>
-    <button type="submit" class="btn btn-primary" onclick='attendance()'>Take Attendance</button>
+    <button type="button" class="btn btn-primary" onclick="attendance()">Take Attendance</button>
     <button class="btn btn-info">Teacher Information</button>
 </form>
 <br><br>
