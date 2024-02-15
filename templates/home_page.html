@@ -23,6 +23,7 @@
         function attendance(){
             subject = prompt("Enter Lecture Name : ")
             var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            alert("Please look on camera. Picture will take for attendance within 10 seconds")
             fetch('/attendance', {
                 method: 'POST',
                 headers: {
@@ -51,7 +52,7 @@
 <form method='post'>
     {% csrf_token %}
     <a href="/admission"><button class="btn btn-primary" type="button">Student Admission</button></a>
-    <button class="btn btn-info">Student Information</button>
+    <a href="/information"><button class="btn btn-info" type="button">Student Information</button></a>
     <button type="button" class="btn btn-primary" onclick="attendance()">Take Attendance</button>
     <button class="btn btn-info">Teacher Information</button>
 </form>

@@ -1,10 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{data}}
-</body>
-</html>
+<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
+  {% load static %}
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Dashboard | By Code Info</title>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+      <!-- Font Awesome Cdn Link -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <script>
+    </script>
+    </head>
+    <body>
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="#" class="logo">
+              <img src="logo.jpg" alt="">
+              <span class="nav-item">Dashboard</span>
+            </a></li>
+            <li><a href="/">
+              <i class="fas fa-home"></i>
+              <span class="nav-item">Home</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-user"></i>
+              <span class="nav-item">Profile</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-wallet"></i>
+              <span class="nav-item">student details</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Information</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-tasks"></i>
+              <span class="nav-item">Tasks</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-cog"></i>
+              <span class="nav-item">Settings</span>
+            </a></li>
+            <li><a href="">
+              <i class="fas fa-question-circle"></i>
+              <span class="nav-item">Help</span>
+            </a></li>
+            <li><a href="" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item">Log out</span>
+            </a></li>
+          </ul>
+        </nav>
+
+        <section class="main">
+          <div class="main-top">
+            <h1>Datta Meghe Institute Of Higher Education And Research Wardha</h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="main-skills">
+            <div class="card">
+              <i class="fas fa-laptop-code"></i>
+              <h3>TOTAL STUDENTS</h3>
+                    <h4>{{data.total_student}}</h4>
+              <a href="/total"><button type="button">VIEW DATA</button></a>
+            </div>
+            <div class="card">
+              <i class="fab fa-wordpress"></i>
+              <h3>PRESENT STUDENTS</h3>
+              <h4>{{data.present_student}}</h4>
+              <button>VIEW DATA</button>
+            </div>
+            <div class="card">
+              <i class="fas fa-palette"></i>
+              <h3>Absent Students</h3>
+              <button>VIEW DATA</button>
+            </div>
+            <div class="card">
+              <i class="fab fa-app-store-ios"></i>
+              <h3>Teacher Staf</h3>
+              <button>VIEW DATA</button>
+            </div>
+          </div>
+
+          <section class="main-course">
+            <h1>courses</h1>
+            <div class="course-box">
+              <ul>
+                <li class="active">In progress</li>
+                <li>explore</li>
+                <li>incoming</li>
+                <li>finished</li>
+              </ul>
+              <div class="course">
+                <div class="box">
+                  <h3></h3>
+                  <h3>BCA<h3>
+                  <button>View Record</button>
+                </div>
+                <div class="box">
+                  <h3>BBA</h3>
+                  <button>View Record</button>
+                </div>
+                <div class="box">
+                  <h3>MCA</h3>
+                  <button>View Record</button>
+                </div>
+                <div class="box">
+                  <h3>MBA</h3>
+                  <button>View Record</button>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </body>
+    </html></span>

@@ -18,3 +18,10 @@ class Students(models.Model):
     pin = models.IntegerField(blank=False, null=False)
     religion = models.CharField(max_length=50)
     image = models.ImageField(blank=True)
+
+
+class PresentStudent(models.Model):
+    student_name = models.CharField(max_length=100, null=False, blank=False)
+    lecture = models.CharField(max_length=50, null=False, blank=False)
+    date = models.DateTimeField(null=False, blank=False)
+    attendance = models.CharField(max_length=50, null=False, blank=False)

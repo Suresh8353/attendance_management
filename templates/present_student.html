@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Student Name</th><th>Lecture</th><th>Date</th><th>Attendance</th>
+  </tr>
+  {% for dt in current_date_student %}
+  <tr>
+    <td>{{dt.name}}</td><td>{{dt.lecture}}</td><td>{{dt.date}}</td><td>{{dt.attendance}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

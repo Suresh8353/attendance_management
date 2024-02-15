@@ -17,7 +17,7 @@ def take_attendance(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         lecture = data.get('subject', None)
-    output_path = 'D:/django_project/attendance_management/static/webcam_capture.jpeg'
+    output_path = 'H:/attendance_management/static/webcam_capture.jpeg'
     webcam = cv2.VideoCapture(0)
     # Check if the webcam is opened successfully
     if not webcam.isOpened():
@@ -39,7 +39,7 @@ def take_attendance(request):
     webcam.release()
     print("Image captured successfully.")
     target_image = frame
-    folder_path = 'D:/django_project/attendance_management/static/student_images'
+    folder_path = 'H:/attendance_management/static/student_images'
     file_names = os.listdir(folder_path)
     dataset_images = []
     student_names = []
@@ -70,7 +70,7 @@ def take_attendance(request):
                 if match[0]:
                     matched_student = student_names[idx]
                     print(matched_student)
-                    with open('D:/django_project/attendance_management/attendance_sheet.csv', 'a', newline='') as csvfile:
+                    with open('H:/attendance_management/attendance_sheet.csv', 'a', newline='') as csvfile:
                         current_datetime = datetime.now()
                         d_time = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
                         data = []
@@ -149,4 +149,39 @@ def student_admission(request):
 
 def student_information(request):
     info = Students.objects.all()
-    return render(request, 'student_info.html', {'data': info})
+    current_datetime = datetime.now()
+    current_date = current_datetime.strftime('%H:%M:%S')
+    with open('H:/attendance_management/attendance_sheet.csv', mode='r', newline='') as file:
+        csv_reader = csv.reader(file)
+        num_rows = 0
+        for row in csv_reader:
+            # student, lecture, date_str, attendance = row
+            # date = datetime.strptime(date_str, '%Y-%m-%d').date()
+            # if date == current_date:
+            num_rows += 1
+        data = {
+            'total_student': info.count(),
+            "present_student": num_rows - 1
+        }
+    return render(request, 'student_information.html', {'data': data})
+
+
+def total_student(request):
+    info = Students.objects.all()
+    return render(request, 'total_student.html', {'data': info})
+
+
+def present_student(request):
+    current_datetime = datetime.now()
+    current_date = current_datetime.strftime('%H:%M:%S')
+    current_date_students = []
+    with open('H:/attendance_management/attendance_sheet.csv', mode='r', newline='') as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            # print(row)
+            # student, lecture, date_str, attendance = row
+            # date = datetime.strptime(date_str, '%Y-%m-%d').date()
+            # if date == current_date:
+            current_date_students.append(row)
+        print(current_date_students)
+    return render(request, "present_student.html", {'data': current_date_students})
